@@ -1,0 +1,14 @@
+.land{
+    float:left;
+    background-color:whitesmoke;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    margin: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.land:hover{
+    box-shadow: 3px 2px 10px grey;
+}
