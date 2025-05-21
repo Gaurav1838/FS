@@ -1,0 +1,9 @@
+.list{
+    width: 350px;
+    background-color: rgb(158, 236, 255);
+    
+}
+
+.list li{
+    margin-bottom: 15px;
+}

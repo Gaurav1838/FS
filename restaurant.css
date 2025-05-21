@@ -1,0 +1,9 @@
+.menucard{
+    background-color: rgb(252, 252, 160);
+    width: 300px;
+    margin-bottom:30px ;
+}
+
+.menucard ul ol{
+    color: rgb(254, 68, 0);
+}
