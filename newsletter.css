@@ -1,0 +1,23 @@
+.Box{
+    width: 450px;
+    height: 200px;
+    border: 1px solid;
+    margin-top: 20%;
+    margin-left: 35%;
+    align-items: center;
+} 
+.Box input{
+    padding:3px;
+    margin: 2px;
+    margin-left: 10%;
+}
+.Box h3{
+    margin-left: 25%;
+}
+.Btn{
+    margin-left: 12%;
+    width:70%;
+    height: 15%;
+    background-color: blue;
+    color: aliceblue;
+}
