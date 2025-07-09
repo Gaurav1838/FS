@@ -1,3 +1,9 @@
+//Create a student portal login system using Express.js
+//Create a /register route to add student with a rollNo,name,and password.
+//Use express-session to store the session after successful login form/login
+// On login, also set a cookie studentPortalAccess with student's roll number and an expiry of 3 minutes
+// Use middleware(cookie-parser and express-session) to manage cookies and sessions
+
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
