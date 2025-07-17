@@ -1,0 +1,137 @@
+1. Write a Node.js program that defines a function add(a, b, callback) which adds two numbers and returns the result via a callback. Chain this with another callback to multiply the result by 10 and log it. Finally, use fs.readFile() to read and display the contents of a file named info.txt.
+
+const fs = require('fs');
+
+function add(a, b, callback) {
+  const sum = a + b;
+  callback(sum);
+}
+
+// First, add 5 + 3, then multiply result by 10 and log it
+add(5, 3, (sum) => {
+  const multiplied = sum * 10;
+  console.log('Multiplied result:', multiplied);
+
+  // After logging, read and display contents of info.txt
+  fs.readFile('info.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return;
+    }
+    console.log('Contents of info.txt:');
+    console.log(data);
+  });
+});
+2. Create a countdown timer using setTimeout(), use setTimeout() and console.log() to demonstrate asynchronous behaviour, and add another setTimeout with 1000ms execute.
+
+function countdown(seconds) {
+  if (seconds < 0) return;
+  
+  setTimeout(() => {
+    console.log(`Countdown: ${seconds}`);
+    countdown(seconds - 1);
+  }, 1000);
+}
+
+// Start countdown from 5
+countdown(5);
+
+// Demonstrate async behavior with multiple setTimeouts
+console.log('Start async demonstration');
+
+setTimeout(() => {
+  console.log('This runs after 500ms');
+}, 500);
+
+setTimeout(() => {
+  console.log('This runs after 1000ms');
+}, 1000);
+
+console.log('End of script');
+3. Create an event emitter that emits a greet event and logs a message, and emit a login event with a username and log "<username> has logged in".
+
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+// Listener for 'greet' event
+emitter.on('greet', () => {
+  console.log('Hello! Welcome to the event system.');
+});
+
+// Listener for 'login' event, accepts username argument
+emitter.on('login', (username) => {
+  console.log(`${username} has logged in`);
+});
+
+// Emit the 'greet' event
+emitter.emit('greet');
+
+// Emit the 'login' event with a username
+emitter.emit('login', 'Alice');
+4. Create a buffer from the string "Node.js" and print it in hexadecimal form, then modify the first letter of the buffer from "N" to "C" and print the result.
+
+// Create a buffer from the string "Node.js"
+const buf = Buffer.from('Node.js');
+
+// Print the buffer in hexadecimal form
+console.log('Original buffer in hex:', buf.toString('hex'));
+
+// Modify the first letter from 'N' (ASCII 78) to 'C' (ASCII 67)
+buf[0] = 'C'.charCodeAt(0);
+
+// Print the modified buffer as a string
+console.log('Modified buffer as string:', buf.toString());
+5. Use a readable stream to read data.txt and log chunks to the console, and explain the benefit of using streams instead of fs.readFile().
+
+const fs = require('fs');
+
+// Create a readable stream for data.txt
+const readableStream = fs.createReadStream('data.txt', { encoding: 'utf8' });
+
+readableStream.on('data', (chunk) => {
+  console.log('Received chunk:');
+  console.log(chunk);
+});
+
+readableStream.on('end', () => {
+  console.log('Finished reading file.');
+});
+
+readableStream.on('error', (err) => {
+  console.error('Error reading file:', err);
+});
+Why use streams over fs.readFile()?
+
+Memory Efficiency: Streams read the file piece by piece (in chunks), so you don’t load the entire file into memory at once. This is great for large files.
+
+Faster Start: With streams, you can start processing data as soon as the first chunk arrives, rather than waiting for the whole file to load.
+
+Better Control: Streams allow you to handle backpressure and manage flow, which is useful in complex data processing pipelines.
+
+Asynchronous & Non-blocking: Like fs.readFile(), streams are asynchronous, but with better handling of large or continuous data (like network streams).
+
+6. Write a program to write "Welcome to Node.js" into a file named welcome.txt, and read the content of welcome.txt and log it using a callback.
+
+const fs = require('fs');
+
+const content = 'Welcome to Node.js';
+
+// Write content to welcome.txt
+fs.writeFile('welcome.txt', content, 'utf8', (writeErr) => {
+  if (writeErr) {
+    return console.error('Error writing file:', writeErr);
+  }
+
+  console.log('File written successfully.');
+
+  // Read the content back
+  fs.readFile('welcome.txt', 'utf8', (readErr, data) => {
+    if (readErr) {
+      return console.error('Error reading file:', readErr);
+    }
+
+    console.log('Content of welcome.txt:');
+    console.log(data);
+  });
+});
